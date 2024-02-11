@@ -1,0 +1,52 @@
+.Transaction-form-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #CCC;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+
+    @media (max-width: 750px) {
+        display: grid;
+    }
+}
+
+.Transaction-input-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.Transaction-input-content label{
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.Transaction-input-content input, select{
+    border-radius: 5px;
+    padding: 5px, 10px;
+    font-size: 15px;
+    border: 1px solid #ccc; 
+}
+
+.Transaction-form-container button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #fff;
+    width: auto;
+    height: 15px;
+    padding: 15px;
+    background: #613A46;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 22px;
+
+    @media (max-width: 750px) {
+        margin-top: 10px;
+    }
+}

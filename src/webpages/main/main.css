@@ -1,0 +1,27 @@
+.Main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.Main-container .Main-header {
+    background-color: #6e424f;
+    height: 150px;
+    text-align: center;
+}
+
+.Main-container .Main-header > h1 {
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    padding-top: 30px;
+
+    @media (max-width: 750px) {
+        font-size: 25px;
+    }
+}
+
+.Main-container .Main-body {
+    margin: auto;
+    max-width: 980px;
+    margin-bottom: 50px;
+}

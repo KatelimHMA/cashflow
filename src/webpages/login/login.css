@@ -1,0 +1,120 @@
+.Login-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Login-container  .Login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.Login-container .Login-header span {
+  padding-top: 15px;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 24px;
+  color: #4D5361;
+}
+
+.Login-container form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Login-container form .Login-input {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.Login-container form .Login-input label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 8px;
+}
+
+.Login-container form .Login-input input {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px;
+  width: 450px;
+  height: 26px;
+  font-size: 16px;
+  border: 1px solid #4D5361;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.Login-container form button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: #fff;
+  width: 462px;
+  height: 26px;
+  padding: 19px;
+  background: #613A46;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.Login-container form button:hover {
+  background-color: #6e424f;
+}
+
+.Login-container .footer {
+  padding-top: 10px;
+}
+
+.Login-container .footer a{
+  color:  #6e424f;
+  font-weight: bold;
+}
+
+
+/*Estilos para dispositivos móveis */
+
+@media screen and (max-width: 750px) {
+ .Login-container {
+    width: 100%;
+    height: 100%;
+ }
+
+ .Login-container .Login-header span {
+    font-size: 20px;
+ }
+
+ .Login-container form .Login-input {
+    width: 100%;
+    max-width: 200px; 
+ }
+
+ .Login-container form .Login-input input {
+  width: 100%;
+}
+
+ .Login-container form .Login-input label {
+  font-size: 12px;
+  line-height: 10px;
+  margin-bottom: 6px;
+  }
+
+ .Login-container form button {
+    width: 100%;
+    max-width: 200px; 
+    font-size: 12px;
+    margin-top: 10px;
+ }
+}
