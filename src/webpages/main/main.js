@@ -9,6 +9,14 @@ function Main() {
     // State variable to store transactions
     const [transactions, setTransactions] = useState([]);
 
+    /**
+     * Cristian:
+     * Não utilizes lógica de autenticação misturada com o acesso aos campos que queres.
+     * Tem mais sentido a vista só ser acessível caso o user esteja logado e então aí sim, vê a homepage.
+     * No futuro, a vista, e o endpoint estarão protegidos pelo token de autenticação, só poderás fazer pedidos(através de um middleware de autenticação) 
+     * à API e obter as transactions se tiveres tokens.
+     * 
+     */
     useEffect(() => {
         // Retrieve user token from localStorage
         const userToken = localStorage.getItem('token');

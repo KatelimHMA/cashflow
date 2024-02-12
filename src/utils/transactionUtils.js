@@ -33,7 +33,22 @@ export const formatDate = (dateString) => {
 
 
 export const formatAmount = (amount) => {
-    return Math.abs(amount).toFixed(2) + ' €'; 
+	/**
+	 * Cristian:
+	 * Tens acesso a utilities como o NumberFormat.
+	 * Ela é acessível por Intl.NumberFormat()
+     * 
+     * ```javascript
+     *  const Euro = new Intl.NumberFormat('pt-pt', {
+            style: 'currency',
+            currency: 'Eur',
+        });
+
+        return Euro.format(value); 
+     * ```
+     * Já retorna os valores formatados em númerico com o simbolo da moeda.
+	 */
+	return Math.abs(amount).toFixed(2) + " €";
 }
 
 
