@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './webpages/login/login';
 import Main from './webpages/main/main';
 import { ProtectedRoute } from './components/protectedRoute';
+import UpdateTransaction from './webpages/updateTransaction/updateTransaction';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/main" element={<ProtectedRoute><Main /></ProtectedRoute>} />
+        <Route exact path="/update-transaction/:id" element={<ProtectedRoute><UpdateTransaction/></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

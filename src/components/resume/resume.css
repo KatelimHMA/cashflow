@@ -1,0 +1,16 @@
+.Resume-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: -40px;
+  gap: 30px;
+
+  @media (max-width: 750px) {
+    gap: 10px;
+  }
+}
+
+
+
+

@@ -16,6 +16,9 @@
 .Transaction-input-content{
     display: flex;
     flex-direction: column;
+    @media (max-width: 750px) {
+        font-size: 13px;
+    }
 }
 
 .Transaction-input-content label{
@@ -48,5 +51,6 @@
 
     @media (max-width: 750px) {
         margin-top: 10px;
+        font-size: 12px;
     }
 }
