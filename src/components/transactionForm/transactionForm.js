@@ -48,18 +48,27 @@ function TransactionForm({setTransactions}) {
      * Tendo isto em conta é necessário ter cuidado na utilização de um useEffect.
      * 
      */
-	const [date, setDate] = useState("");
-	const [category, setCategory] = useState("");
-	const [description, setDescription] = useState("");
-	const [amount, setAmount] = useState("");
-	const [isExpense, setIsExpense] = useState(false);
+
+	const [transactionState, setTransactionState] = useState (
+	{
+		date: '',
+		category: '',
+		description: '',
+		amount: '',
+		isExpense: false,
+	});
 
 	// The handleCategoryChange function is responsible for updating the category and transaction type based on selected option.
 	const handleCategoryChange = (e) => {
 		const selectedCategoryName = e.target.value; // Gets the name of the selected category
 		const selectedCategory = transactionCategoryOptions.find((option) => option.category === selectedCategoryName); // Finds the selected category object
-		setCategory(selectedCategoryName); // Updates the category state with the name of the selected category
-		setIsExpense(selectedCategory.type === "expense");
+
+		setTransactionState(prevState => ({
+			...prevState,
+			category: selectedCategoryName, // Updates the category state with the name of the selected category
+			isExpense: selectedCategory.type === "expense"
+		}));
+
 	};
 
 	const handleAddTransaction = () => {
@@ -68,12 +77,12 @@ function TransactionForm({setTransactions}) {
 		 * Cristian:
 		 * Em vez de alerts, crias um state para gerir os erros e representa-los nas vista como parte integrante do formulário.
 		 */
-		if (!date || !category || !description || !amount) {
+		if (!transactionState.date || !transactionState.category || !transactionState.description || !transactionState.amount) {
 			alert("Por favor, preencha todos os campos.");
 			return;
 		}
 
-		if (amount < 0) {
+		if (transactionState.amount <= 0) {
 			alert("Insira um valor positivo.");
 			return;
 		}
@@ -101,11 +110,11 @@ function TransactionForm({setTransactions}) {
 
 		const newTransaction = {
 			id: id,
-			date: date,
-			category: category,
-			description: description,
-			amount: amount,
-			isExpense: isExpense,
+			date: transactionState.date,
+			category: transactionState.category,
+			description: transactionState.description,
+			amount: transactionState.amount,
+			isExpense: transactionState.isExpense,
 		};
 
 		// Add the new transaction to localStorage
@@ -114,18 +123,25 @@ function TransactionForm({setTransactions}) {
 
 		// Clear the form fields after adding the transaction
 
-		setDate("");
-		setCategory("");
-		setDescription("");
-		setAmount("");
-		setIsExpense(false);
+		setTransactionState(
+			{
+			date: '', 
+			category: '',
+			description: '', 
+			amount: '', 
+			isExpense: false
+ 			});
 	};
 
 	return (
 		<form className="Transaction-form-container">
 			<div className="Transaction-input-content">
 				<label htmlFor="date"> Data</label>
-				<input type="date" name="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+				<input type="date" 
+				name="date" id="date" 
+				value={transactionState.date} 
+				onChange={(e) => setTransactionState(prevState => ({ ...prevState, date: e.target.value }))} 
+				required />
 			</div>
 
 			<div className="Transaction-input-content">
@@ -134,8 +150,8 @@ function TransactionForm({setTransactions}) {
             * Faltam atributos de acessibilidade : aria-labels, htmlFor, etc.
             * Pesquisa por "aria-"
              */}
-				<label>Categoria</label>
-				<select name="transactionCategory" value={category} onChange={handleCategoryChange} required>
+				<label htmlFor="transactionCategory" aria-label="Selecione a categoria">Categoria</label>
+				<select name="transactionCategory" value={transactionState.category} onChange={handleCategoryChange} required>
 					<option value="" disabled hidden>
 						{" "}
 					</option>
@@ -152,15 +168,19 @@ function TransactionForm({setTransactions}) {
 				<input
 					type="text"
 					name="description"
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
+					value={transactionState.description}
+					onChange={(e) => setTransactionState(prevState => ({ ...prevState, description: e.target.value }))}
 					required
 				/>
 			</div>
 
 			<div className="Transaction-input-content">
 				<label htmlFor="amount"> Valor </label>
-				<input type="number" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+				<input type="number" 
+				name="amount" 
+				value={transactionState.amount} 
+				onChange={(e) => setTransactionState(prevState => ({ ...prevState, amount: e.target.value }))}
+				required />
 			</div>
 
 			<button type="button" onClick={handleAddTransaction}>

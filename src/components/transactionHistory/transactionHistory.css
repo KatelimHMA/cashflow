@@ -5,14 +5,61 @@
     box-shadow: 0px 0px 5px #CCC;
     border-radius: 10px;
     margin-top: 20px;
+    @media (max-width: 750px) {
+        font-size: 13px;
+    }
 }
 
 .Transactions-table th {
-    padding: 10px 0;
+    padding: 8px 0;
     text-align: left;
 }
 
 .Transactions-table td{
-    padding: 10px 0;
+    padding: 8px 0;
     text-align: left;
+}
+
+.Transactions-table .table_td__btupdate, .Transactions-table .table_td__btdelete{
+    text-align: end;
+}
+
+.Transactions-table .table_header__date{
+    width: 120px;
+}
+
+.Transactions-table .table_header__category {
+    width: 150px;
+}
+
+.Transactions-table .table_header__amount{
+    width: 100px;
+}
+
+.Transactions-table .table_header__update, .Transactions-table .table_header__delete {
+    width: 40px;
+}
+
+.Transactions-table button{
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 8px;
+}
+
+.Transactions-table button:hover {
+    background-color: rgb(215, 199, 212);
+}
+
+.Transactions-table .icon {
+    width: 16px;
+    height: 16px;
+}
+
+.Transactions-table .Icon-update {
+    content: url('../../assets/pen-solid.svg');
+}
+
+.Transactions-table .Icon-delete {
+    content: url('../../assets/trash-solid.svg');
 }

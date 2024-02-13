@@ -1,11 +1,23 @@
-import { formatDate, sortTransactions, formatAmount } from "../../utils/transactionUtils";
+import { formatDate, sortTransactions, formatAmount, deleteTransaction} from "../../utils/transactionUtils";
 import "./transactionHistory.css";
 import React from "react";
-
+import { Link } from 'react-router-dom'; 
 
 
 function TransactionHistory({transactions}) {
 	const sortedTransactions = sortTransactions(transactions); // Sorting by date (from most recent to oldest)
+
+	if (!sortedTransactions.length) {
+    return <p>Não há transações para exibir.</p>;
+  }
+
+	
+	const handleDeleteTransaction = async (transactionId) => {
+    await deleteTransaction(transactionId);
+    // reload the page
+		window.location.reload();
+  };
+
 
 	/**
 	 * Cristian:
@@ -18,16 +30,17 @@ function TransactionHistory({transactions}) {
 		<table className="Transactions-table">
 			<thead>
 				<tr>
-					<th style={{ width: 120 }}>Data</th>
-					<th style={{ width: 150 }}>Categoria</th>
+					<th className="table_header__date">Data</th>
+					<th className="table_header__categogy">Categoria</th>
 					<th>Descrição</th>
-					<th style={{ width: 120 }}>Valor</th>
-					{/*<th style={{width: 10}}></th>*/}
+					<th className="table_header__amount">Valor</th>
+					{/* <th className="table_header__update"></th> */}
+					<th className="table_header__delete"></th> 
 				</tr>
 			</thead>
 			<tbody>
 				{sortedTransactions.map((transaction) => (
-					<tr key={transaction.id}>
+						<tr key={transaction.id}>
 						<td>{formatDate(transaction.date)}</td>
 						<td>{transaction.category}</td>
 						<td>{transaction.description}</td>
@@ -35,9 +48,22 @@ function TransactionHistory({transactions}) {
 							{transaction.isExpense ? "- " : "+ "}
 							{formatAmount(transaction.amount)}
 						</td>
-						{/*<td><button>Editar</button></td>*/}
+						{/*
+						<td className="table_td__btupdate">
+							<Link to={`/update-transaction/${transaction.id}`}>
+								<button type="button">
+									<span className="Icon-update"></span>
+								</button>
+							</Link>				
+						</td> */}
+
+						<td className="table_td__btdelete">
+							<button type="button" onClick={() => handleDeleteTransaction(transaction.id)}>
+								<span className="Icon-delete"></span>
+							</button>
+						</td>
 					</tr>
-				))}
+					))}
 			</tbody>
 		</table>
 	);
