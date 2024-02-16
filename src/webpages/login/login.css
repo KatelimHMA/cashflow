@@ -52,6 +52,7 @@
   border: 1px solid #4D5361;
   border-radius: 5px;
   margin-bottom: 12px;
+  box-sizing:content-box;
 }
 
 .Login-container form button{
@@ -74,15 +75,16 @@
   background-color: #6e424f;
 }
 
-.Login-container .footer {
-  padding-top: 10px;
-}
 
-.Login-container .footer a{
-  color:  #6e424f;
-  font-weight: bold;
+.Login-container .error-message {
+  .error-message {
+    color: red;
+    margin: 15px 0;
+    @media (max-width: 750px) {
+        font-size: 13px;
+    }
 }
-
+}
 
 /*Estilos para dispositivos móveis */
 

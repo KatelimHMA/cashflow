@@ -6,6 +6,11 @@ export const getAllTransactions = () => {
     return storedTransactions ? JSON.parse(storedTransactions) : [];
 };
 
+export const getTransactionById = (transactionId) => {
+    const storedTransactions = getAllTransactions();
+    const foundTransaction = storedTransactions.filter(transaction => transaction.id == transactionId);
+    return foundTransaction[0];
+}
 
 export const addTransaction = (newTransaction) => {
     // Retrieve user token from localStorage
@@ -24,22 +29,45 @@ export const addTransaction = (newTransaction) => {
 };
 
 
+export const updateTransaction = (updatedTransaction) => {
+    // Retrieve user token from localStorage
+    const userToken = getUserToken();
+
+    // Get all transactions on the localStorage
+    const storedTransactions = getAllTransactions();
+
+    // Find the transaction we want to update
+    const transactionIndex = storedTransactions.findIndex(transaction => transaction.id === updatedTransaction.id);
+        // findIndex - Returns the index of the first element in the array that satisfies the condition (in this case, having the correct id).
+        // If it does not find an element, it returns -1.
+
+    
+    // If the transaction is found, update it
+    if (transactionIndex !== -1) {
+        storedTransactions[transactionIndex] = updatedTransaction;
+    }
+    
+    // Store the updated transaction in localStorage
+    localStorage.setItem(userToken, JSON.stringify(storedTransactions));
+    
+    // Return the updated transactions
+    return storedTransactions;
+};
+
 
 export const deleteTransaction = (transactionId) => {
     const userToken = getUserToken();
     const storedTransactions = getAllTransactions();
 
-    // Filtrar a transação que deseja remover
+    // Filter the transaction I want to remove
     const updatedTransactions = storedTransactions.filter(transaction => transaction.id !== transactionId);
 
-    // Salvar o array de transações atualizado de volta no localStorage
+    // Save the updated transactions array back to localStorage.
     localStorage.setItem(userToken, JSON.stringify(updatedTransactions));
 
-    // Atualizar o estado ou retornar o novo array de transações, se necessário
+    // Update the state or return the new transactions array, if needed.
     return updatedTransactions;
 };
-
-
 
 
 // Sorting by date (from most recent to oldest)
@@ -56,12 +84,6 @@ export const formatDate = (dateString) => {
 
 
 export const formatAmount = (amount) => {
-	/**
-	 * Cristian:
-	 * Tens acesso a utilities como o NumberFormat.
-	 * Ela é acessível por Intl.NumberFormat()
-     * * Já retorna os valores formatados em númerico com o simbolo da moeda.*/
-
      const Euro = new Intl.NumberFormat('pt-pt', {
         style: 'currency',
         currency: 'Eur',

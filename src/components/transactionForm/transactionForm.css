@@ -54,3 +54,11 @@
         font-size: 12px;
     }
 }
+
+.error-message {
+    color: red;
+    margin: 5px;
+    @media (max-width: 750px) {
+        font-size: 13px;
+    }
+}
