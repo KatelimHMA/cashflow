@@ -1,7 +1,7 @@
-import Resume from "../../components/resume/resume";
-import TransactionForm from "../../components/transactionForm/transactionForm";
-import TransactionHistory from "../../components/transactionHistory/transactionHistory";
-import "./main.css";
+import Resume from "../../components/Resume/Resume";
+import TransactionForm from "../../components/TransactionForm/TransactionForm";
+import TransactionHistory from "../../components/TransactionHistory/TransactionHistory";
+import "./Main.css";
 import React, {useState, useEffect} from "react";
 
 
@@ -12,6 +12,7 @@ function Main() {
     const [incomes, setIncomes] = useState(0);
     const [expenses, setExpenses] = useState(0);
     const [total, setTotal] = useState(0);
+    
 
     /**
      * Cristian:
@@ -24,13 +25,13 @@ function Main() {
     useEffect(() => {
         // Retrieve user token from localStorage
         const userToken = localStorage.getItem('token');
-        if (userToken) {
-            // Retrieve transactions associated with the user from localStorage
-            const storedTransactions = JSON.parse(localStorage.getItem(userToken));
-            if (storedTransactions) {
-                setTransactions(storedTransactions);
-            }
+
+        // Retrieve transactions associated with the user from localStorage
+        const storedTransactions = JSON.parse(localStorage.getItem(userToken));
+        if (storedTransactions) {
+            setTransactions(storedTransactions);
         }
+        
     }, []); 
 
 
@@ -54,11 +55,6 @@ function Main() {
         setTotal(incomeSum - expenseSum); // Total is income minus expenses
     }, [transactions]); // Dependency array ensures this effect runs whenever transactions change
 
-    // Effect to display debugging information
-    /*useEffect(() => {
-        console.log(transactions);
-    }, [transactions]);*/
-    
 
     return (
         <div className="Main-container">

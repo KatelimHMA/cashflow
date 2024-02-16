@@ -1,5 +1,5 @@
-import ResumeItem from "../resumeItem/resumeItem";
-import "./resume.css";
+import ResumeItem from "../ResumeItem/ResumeItem";
+import "./Resume.css";
 
 function Resume({incomes, expenses, total}) {
  

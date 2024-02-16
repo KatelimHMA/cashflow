@@ -1,31 +1,30 @@
 import { formatDate, sortTransactions, formatAmount, deleteTransaction} from "../../utils/transactionUtils";
-import "./transactionHistory.css";
+import EmptyState from "../EmptyState/EmptyState";
+import "./TransactionHistory.css";
 import React from "react";
 import { Link } from 'react-router-dom'; 
 
 
 function TransactionHistory({transactions}) {
-	const sortedTransactions = sortTransactions(transactions); // Sorting by date (from most recent to oldest)
+ 
+ 	const sortedTransactions = sortTransactions(transactions); // Sorting by date (from most recent to oldest)
 
-	if (!sortedTransactions.length) {
-    return <p>Não há transações para exibir.</p>;
-  }
+	if (!sortedTransactions || !sortedTransactions.length) {
+		return <EmptyState msg="Não há transações para exibir." />
+	}
 
-	
 	const handleDeleteTransaction = async (transactionId) => {
-    await deleteTransaction(transactionId);
-    // reload the page
-		window.location.reload();
-  };
+		try {
+			await deleteTransaction(transactionId);
+			// reload the page
+			window.location.reload();
+		} catch (error) {
+			// handle the error here
+			console.error("Erro ao excluir transação:", error);
+		}
+	}; //using async and await ensures that the deletion is completed before the page is reloades.
 
 
-	/**
-	 * Cristian:
-	 * E se não houver transacções? Qual é o empty state?
-	 * Evita CSS Inline. Cria supremacia de hierarquia quando combinado com CSS Externo.
-	 * é preferível:
-	 * <th className="table_header__cell">Data</th>
-	 */
 	return (
 		<table className="Transactions-table">
 			<thead>
@@ -34,7 +33,7 @@ function TransactionHistory({transactions}) {
 					<th className="table_header__categogy">Categoria</th>
 					<th>Descrição</th>
 					<th className="table_header__amount">Valor</th>
-					{/* <th className="table_header__update"></th> */}
+					<th className="table_header__update"></th> 
 					<th className="table_header__delete"></th> 
 				</tr>
 			</thead>
@@ -44,18 +43,18 @@ function TransactionHistory({transactions}) {
 						<td>{formatDate(transaction.date)}</td>
 						<td>{transaction.category}</td>
 						<td>{transaction.description}</td>
-						<td style={{ color: transaction.isExpense ? "red" : "green" }}>
+						<td className={`tr tr-${transaction.isExpense ? "red" : "green"}`} style={{ color: transaction.isExpense ? "red" : "green" }}>
 							{transaction.isExpense ? "- " : "+ "}
 							{formatAmount(transaction.amount)}
 						</td>
-						{/*
+						
 						<td className="table_td__btupdate">
 							<Link to={`/update-transaction/${transaction.id}`}>
 								<button type="button">
 									<span className="Icon-update"></span>
 								</button>
 							</Link>				
-						</td> */}
+						</td> 
 
 						<td className="table_td__btdelete">
 							<button type="button" onClick={() => handleDeleteTransaction(transaction.id)}>

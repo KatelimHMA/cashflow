@@ -1,4 +1,4 @@
-import "./login.css";
+import "./Login.css";
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,15 +8,15 @@ function Login() {
     // State variables to store login data
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     // Event Handler to handle button click
     function handleLogin () {
-        console.log("Botão clicado");
         
         // Check credencials (fixed user and password)
         if (username !== 'admin' || password !== '1234') {
-            alert('Credenciais inválidas. Tente novamente.');
+            setError('Credenciais inválidas. Tente novamente.');
             return;
         }
 
@@ -26,7 +26,7 @@ function Login() {
         // Save token in localStorage
         localStorage.setItem('token', userToken);
 
-        // Redirecionar para a página principal
+        // Redirects to the main page
         navigate('/main');
     }
 
@@ -44,7 +44,11 @@ function Login() {
                         name="username"
                         id="username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                            setError('');
+                        }}
+                        aria-label="Digite o username"
                         required
                     />
                 </div>
@@ -56,7 +60,11 @@ function Login() {
                         name="password"
                         id="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setError('');
+                        }}
+                        aria-label="Digite a senha"
                         required
                     />
                 </div>
@@ -65,6 +73,10 @@ function Login() {
                     Entrar
                 </button>
             </form>
+
+            {/* It only shows the error message if error were not empty. */}
+			{error && <div className="error-message">{error}</div>}	
+
         </div>
     )
 }

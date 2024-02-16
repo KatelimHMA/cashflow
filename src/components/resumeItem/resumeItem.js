@@ -1,4 +1,4 @@
-import "./resumeItem.css";
+import "./ResumeItem.css";
 import { formatAmount} from "../../utils/transactionUtils";
 
 function ResumeItem({title, value}) {
