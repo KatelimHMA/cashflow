@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import Login from './webpages/Login/Login';
-import Main from './webpages/Main/Main';
+import Login from './webpages/Login/login';
+import Main from './webpages/Main/main';
 import { ProtectedRoute } from './components/protectedRoute';
-import UpdateTransaction from './webpages/UpdateTransaction/UpdateTransaction';
+import UpdateTransaction from './webpages/UpdateTransaction/updateTransaction';
 
 
 function App() {

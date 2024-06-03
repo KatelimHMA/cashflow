@@ -7,7 +7,7 @@ import React, {useState} from "react";
 import {transactionCategoryOptions} from "../../data/transactionCategoryOptions.js";
 import { v4 as uuidv4 } from 'uuid';
 import {addTransaction} from '../../utils/transactionUtils.js';
-import "./TransactionForm.css";
+import "./transactionForm.css";
 
 
 function TransactionForm({setTransactions}) {

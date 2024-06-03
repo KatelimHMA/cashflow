@@ -1,4 +1,4 @@
-import "./UpdateTransaction.css";
+import "./updateTransaction.css";
 import { useParams } from 'react-router-dom';
 import React, {useState, useEffect} from "react";
 import { getTransactionById, updateTransaction} from "../../utils/transactionUtils";

@@ -1,6 +1,6 @@
-import Resume from "../../components/Resume/Resume";
-import TransactionForm from "../../components/TransactionForm/TransactionForm";
-import TransactionHistory from "../../components/TransactionHistory/TransactionHistory";
+import Resume from "../../components/Resume/resume";
+import TransactionForm from "../../components/TransactionForm/transactionForm";
+import TransactionHistory from "../../components/TransactionHistory/transactionHistory";
 import "./Main.css";
 import React, {useState, useEffect} from "react";
 

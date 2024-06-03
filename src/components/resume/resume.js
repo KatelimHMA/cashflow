@@ -1,4 +1,4 @@
-import ResumeItem from "../ResumeItem/ResumeItem";
+import ResumeItem from "../ResumeItem/resumeItem";
 import "./Resume.css";
 
 function Resume({incomes, expenses, total}) {
